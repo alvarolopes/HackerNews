@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    
+    <script src="scripts/jquery-1.11.3.min.js"></script>
+    <script src="scripts/angular.min.js"></script> 
+    <script src="scripts/ng-infinite-scroll.min.js"></script>
+    <script src="scripts/hn.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/hn.css">
+</head>
+<body>
+
+  <div ng-app='hnApp' ng-controller='HnController'>
+    <div infinite-scroll='news.nextPage()' infinite-scroll-disabled='news.busy' infinite-scroll-distance='1'  >
+      <div ng-repeat='item in news.items' class="item">
+        <ul>
+          <li>
+            <span class='score'>{{item.points}}</span> - 
+            <a ng-href='{{item.url}}' target='_blank'>{{item.title}}</a> - 
+            <small>by {{item.author}} - {{item.num_comments}} comments</a>
+          </li>
+        </ul>
+      </div>
+      <div ng-show='news.busy'>Loading...</div>
+    </div>
+  </div>
+
+</body>
+</html>
